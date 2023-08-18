@@ -1,8 +1,10 @@
-package com.stormdev.listadetarefas;
+package com.stormdev.listadetarefas.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.stormdev.listadetarefas.R;
 
 public class AdicionarTarefaActivity extends AppCompatActivity {
 

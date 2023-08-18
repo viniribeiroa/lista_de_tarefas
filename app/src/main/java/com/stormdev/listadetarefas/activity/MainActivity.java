@@ -1,36 +1,43 @@
-package com.stormdev.listadetarefas;
+package com.stormdev.listadetarefas.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 
-import androidx.core.view.WindowCompat;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.stormdev.listadetarefas.databinding.ActivityMainBinding;
+import com.stormdev.listadetarefas.R;
+import com.stormdev.listadetarefas.adapter.TarefaAdapter;
+import com.stormdev.listadetarefas.model.Tarefa;
 
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toolbar;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
-    private AppBarConfiguration appBarConfiguration;
+    private RecyclerView recyclerView;
+    private TarefaAdapter tarefaAdapter;
+    private List<Tarefa> listaTarefas = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //Configurar RecycleView
+        recyclerView = findViewById(R.id.recyclerView);
 
         FloatingActionButton fab =findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -43,6 +50,29 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    public void carregarListaTarefas(){
+
+        //Listar tarefas
+        Tarefa tarefa1 = new Tarefa();
+        tarefa1.setNomeTarefa("Ir ao mercado");
+        listaTarefas.add(tarefa1);
+
+        Tarefa tarefa2 = new Tarefa();
+        tarefa2.setNomeTarefa("Ir a Feira");
+        listaTarefas.add(tarefa2);
+        /*
+            Exibir lista de tarefas no RecycleVIew
+         */
+        //Configurar adapter
+        tarefaAdapter = new TarefaAdapter(listaTarefas);
+        //Configurar RecycleView
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), LinearLayoutManager.VERTICAL));
+        //recyclerView.setAdapter();
     }
 
     private void setSupportActionBar(Toolbar toolbar) {
@@ -70,10 +100,5 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
-                || super.onSupportNavigateUp();
-    }
+
 }
