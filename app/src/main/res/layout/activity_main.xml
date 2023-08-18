@@ -28,7 +28,7 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginBottom="16dp"
-        app:backgroundTint="#00FFFFFF"
+        android:src="@drawable/ic_confirmar_24dp"
         app:fabSize="normal" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
