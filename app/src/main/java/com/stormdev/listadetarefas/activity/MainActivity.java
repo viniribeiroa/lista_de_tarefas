@@ -72,7 +72,13 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), LinearLayoutManager.VERTICAL));
-        //recyclerView.setAdapter();
+        recyclerView.setAdapter(tarefaAdapter);
+    }
+
+    @Override
+    protected void onStart() {
+        carregarListaTarefas();
+        super.onStart();
     }
 
     private void setSupportActionBar(Toolbar toolbar) {
