@@ -1,5 +1,6 @@
 package com.stormdev.listadetarefas.activity;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.stormdev.listadetarefas.R;
 import com.stormdev.listadetarefas.adapter.TarefaAdapter;
+import com.stormdev.listadetarefas.helper.DbHelper;
 import com.stormdev.listadetarefas.helper.RecyclerItemClickListener;
 import com.stormdev.listadetarefas.model.Tarefa;
 
@@ -41,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
 
         //Configurar RecycleView
         recyclerView = findViewById(R.id.recyclerView);
+
+
 
         //Adicionando evento de Click
         recyclerView.addOnItemTouchListener(

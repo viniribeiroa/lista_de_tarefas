@@ -38,5 +38,26 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
 
+        /**
+         * ATUALIZAR TABELAS
+        String sql = " ALTER TABLE " + TABELA_TAREFAS + " ADD COLUMN status VARCHAR(1) "  ;
+
+         */
+
+        /**
+         * APAGANDO TABELAS
+         */
+        String sql = " DROP TABLE IF EXISTS " +TABELA_TAREFAS +" ;";
+        try{
+
+            db.execSQL(sql
+            );
+            onCreate(db);
+            Log.i("INFO DB", "sucesso ao atualizar APP" );
+
+        }catch (Exception e){
+            Log.i("INFO DB", "Error ao atualizar APP" + e.getMessage());
+        }
+
     }
 }
